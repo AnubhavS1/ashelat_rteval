@@ -168,11 +168,13 @@ def parse_options(cfg, parser, cmdargs):
                       help='print rteval version and exit')
     # if the -S/--source-download option doesn't include the version, set version to default
     ind = None
-    if sys.argv.count("-S") > 0: ind = sys.argv.index("-S")
-    elif sys.argv.count("--source-download") > 0: ind = sys.argv.index("--source-download")
+    if sys.argv.count("-S") > 0:
+        ind = sys.argv.index("-S")
+    elif sys.argv.count("--source-download") > 0:
+        ind = sys.argv.index("--source-download")
     if ind != None:
-        if ind+1 == len(sys.argv): 
-            sys.argv.insert(ind+1, ModuleParameters()["source"]["default"].strip(".tar.xz"))
+        if ind+1 == len(sys.argv):
+            sys.argv.insert(ind+1, ModuleParameters()["source"]["default"].replace(".tar.xz", ""))
         cmdargs.append(sys.argv[ind+1])
 
     parser.add_option("-S", "--source-download", dest="rteval___srcdownload",
